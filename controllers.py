@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import tornado.web
-from settings import *
+import settings
 from twitter import *
 
 class Index(tornado.web.RequestHandler):
@@ -10,13 +10,13 @@ class Index(tornado.web.RequestHandler):
 
 class Search(tornado.web.RequestHandler):
     def get(self, q):
-        print search(q)
+        self.write(self.search(q))
 
-    def search(q):
+    def search(self, q):
         t = Twitter(
-            auth=OAuth(OAUTH_TOKEN, OAUTH_SECRET,
-                       CONSUMER_KEY, CONSUMER_SECRET)
+            auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET,
+                       settings.CONSUMER_KEY, settings.CONSUMER_SECRET)
            )
 
         # Search the latest tweets
-        return t.search.tweets(q)
+        return t.search.tweets(q='#'+str(q))
