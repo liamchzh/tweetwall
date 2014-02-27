@@ -6,7 +6,7 @@ from twitter import *
 
 class Index(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello World.")
+        self.render("index.html")
 
 class Search(tornado.web.RequestHandler):
     def get(self, q):
