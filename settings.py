@@ -6,7 +6,7 @@ import controllers
 settings = {"template_path" : os.path.join(os.path.dirname(__file__), "templates")}
 
 urls = [(r'/tweetwall', controllers.Index),
-        (r'/search/(\w+)', controllers.Search),
+        (r'/search/(.*)', controllers.Search),
         ]
 
 

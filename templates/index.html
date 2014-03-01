@@ -4,9 +4,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TweetWall</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <style type="text/css"></style>
         <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body {background-image:url(https://abs.twimg.com/images/themes/theme1/bg.png); background-repeat: no-repeat;background-color:#C0DEED}
+            #tweet {background-color:white}
+            #time {color:#AAA}
+        </style>
     </head>
 
     <body>
@@ -16,15 +21,34 @@
             </div>
             <div class="center-block">
                 <div class="input-group col-md-8">
-                    <input type="text" class="  search-query form-control" placeholder="Search" />
+                    <form method="get" action="">
+                        <input type="text" name="topic" class="search-query form-control" placeholder="#any topic you want" />
+                    </form>
                     <span class="input-group-btn">
                         <button class="btn" type="button">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
                 </div>
+                <div id="tweets">
+                    {% if tweets %}
+                        {% for t in tweets %}
+                        <div id="tweet" class="col-md-8">
+                            <div id="" class="col-md-1">
+                                <img src="{{ t['user']['profile_image_url_https'] }}" alt=""> 
+                            </div>
+                            <div id="tweet" class="col-md-11">
+                                <strong><a href="https://twitter.com/{{ t['user']['screen_name']}}">{{t['user']['name']}}</a></strong>
+                                <span>@{{ t['user']['screen_name'] }}</span>
+                                <p>{{ t['text'] }}</p>
+                                <small><span id="time">{{t['created_at']}}</span></small>
+                                <hr>
+                            </div>
+                        </div>
+                        {% end %}
+                    {% end %}
+                <div>
             </div>
         </div>
     </body>
-
 </html>
