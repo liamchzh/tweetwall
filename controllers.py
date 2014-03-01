@@ -3,15 +3,14 @@
 import tornado.web
 import settings
 from twitter import *
-import json
 
 class Base(tornado.web.RequestHandler):
-    def search(self, q):
+    def search(self, query):
         t = Twitter(auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET,
                        settings.CONSUMER_KEY, settings.CONSUMER_SECRET)
            )
         # Search the latest tweets
-        return t.search.tweets(q=str(q))
+        return t.search.tweets(q=query)
 
 
 class Index(Base):

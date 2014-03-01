@@ -8,21 +8,31 @@
         <style type="text/css"></style>
         <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <style type="text/css">
-            body {background-image:url(https://abs.twimg.com/images/themes/theme1/bg.png); background-repeat: no-repeat;background-color:#C0DEED}
-            #tweet {background-color:white}
+            .container {}
+            body {
+                background-image:url(https://abs.twimg.com/images/themes/theme1/bg.png); 
+                background-repeat: no-repeat;
+                background-color:#C0DEED;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            #tweet {padding-top: 10px;
+                background-color:white}
             #time {color:#AAA}
         </style>
     </head>
 
     <body>
         <div class="container">
-            <div class="center-block">
+
+        {% if not tweets %}
+            <div class="text-center">
                 <h1>TweetWall</h1>
             </div>
-            <div class="center-block">
-                <div class="input-group col-md-8">
+            <div>
+                <div class="input-group col-md-6 col-md-offset-3">
                     <form method="get" action="">
-                        <input type="text" name="topic" class="search-query form-control" placeholder="#any topic you want" />
+                        <input type="text" name="topic" class="search-query form-control" placeholder="Please type a topic" />
                     </form>
                     <span class="input-group-btn">
                         <button class="btn" type="button">
@@ -30,14 +40,31 @@
                         </button>
                     </span>
                 </div>
-                <div id="tweets">
-                    {% if tweets %}
-                        {% for t in tweets %}
-                        <div id="tweet" class="col-md-8">
-                            <div id="" class="col-md-1">
+            </div>
+
+        {% else %}
+            <div class="col-md-3">
+                <a href="/tweets"><h1>TweetWall</h1></a>
+            </div>
+            <div>
+                <div class="input-group col-md-6">
+                    <form method="get" action="">
+                        <input type="text" name="topic" class="search-query form-control" placeholder="Please type a topic" />
+                    </form>
+                    <span class="input-group-btn">
+                        <button class="btn" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <br>
+                <div id="tweet" class="col-md-6">
+                    {% for t in tweets %}
+                        <div id="">
+                            <div id="" class="col-md-2">
                                 <img src="{{ t['user']['profile_image_url_https'] }}" alt=""> 
                             </div>
-                            <div id="tweet" class="col-md-11">
+                            <div id="" class="col-md-10">
                                 <strong><a href="https://twitter.com/{{ t['user']['screen_name']}}">{{t['user']['name']}}</a></strong>
                                 <span>@{{ t['user']['screen_name'] }}</span>
                                 <p>{{ t['text'] }}</p>
@@ -45,10 +72,10 @@
                                 <hr>
                             </div>
                         </div>
-                        {% end %}
                     {% end %}
-                <div>
+                </div>
             </div>
         </div>
+        {% end %}
     </body>
 </html>
