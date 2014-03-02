@@ -14,11 +14,18 @@
                 background-repeat: no-repeat;
                 background-color:#C0DEED;
                 padding-top: 40px;
-                padding-bottom: 40px;
+                padding-bottom: 30px;
             }
             #tweet {padding-top: 10px;
                 background-color:white}
             #time {color:#AAA}
+
+            #footer {
+                padding-bottom: 10px;
+                width: 100%;
+                height: 15px;
+            }
+
         </style>
     </head>
 
@@ -73,9 +80,14 @@
                             </div>
                         </div>
                     {% end %}
+                    <div id="footer">
+                        <div class="col-md-offset-4">
+                            <p class="text-muted">©2014 陈铮Liam <a target="_blank" href="http://liamchzh.github.io/about">关于我</a> </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            {% end %}
         </div>
-        {% end %}
+
     </body>
 </html>
